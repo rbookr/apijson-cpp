@@ -2,7 +2,9 @@ mysql 数据库 连接1 [MySQL++: MySQL++]()
 
 https://github.com/mysql/mysql-connector-cpp
 
-json库 https://github.com/nlohmann/json
+json库 
+ - https://github.com/nlohmann/json
+ - [document](https://json.nlohmann.me/api/basic_json/)
 
 [c++ 使用mysql connector 的libmysqlcppconn8]
  - https://dev.mysql.com/doc/connector-cpp/8.0/en/connector-cpp-apps-general-considerations.html
