@@ -10,6 +10,8 @@ set(CMAKE_CXX_FLAGS "-std=c++17")
 # 设置宏
 add_definitions(-D DEBUG)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 # 指定include 的头文件的位置
 include_directories(./include)
 include_directories(../lib)
