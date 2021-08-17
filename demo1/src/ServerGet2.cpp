@@ -90,6 +90,8 @@ QueryConfig ServerGet2::getQueryConfig(std::string table,json request){
     return QueryConfig::getQueryConfig(table, request);
 }
 
+//通过QueryConfig 来查询数据库来得到一个json对象
 json ServerGet2::getSQLObject(QueryConfig config) {
+    debug_out(TAG," getSQLObject ->getSQL: ",QueryConfig::getSQL(&config));
     return json();
 }

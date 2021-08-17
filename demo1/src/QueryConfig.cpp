@@ -4,7 +4,7 @@
 #include <vector>
 
 
-std::string  QueryConfig::getWhereString(MAP_type where){
+std::string  QueryConfig::getWhereString(const MAP_type &where){
     if( where.size() > 0){
         std::string whereString = " where ";
         for (const auto&[key,value] : where) {
@@ -26,7 +26,7 @@ std::string  QueryConfig::getWhereString(MAP_type where){
             return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
         };
 
-        if(ends_with(whereString, "where"))
+        if(!ends_with(whereString, "where"))
             return whereString;
     }
     return "";
@@ -38,8 +38,9 @@ QueryConfig QueryConfig::getQueryConfig(std::string table , json request){
         //keys.push_back(el.key());
         auto & key = el.key();
         auto & val = el.value();
-        std::cout << key << " --<";
-        std::cout << val<< std::endl;
+        //std::cout << key << " --<";
+        //std::cout << val<< std::endl;
+        debug_out(TAG,"  getQueryConfig :","key ",key ," <=> value:",val);
         if( val.is_string()){
             transferredRequest[key] = val.get<std::string>();
         }
