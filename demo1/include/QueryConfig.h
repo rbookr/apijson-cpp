@@ -12,6 +12,16 @@ using json = nlohmann::json;
 
 class QueryConfig {
     using MAP_type = std::unordered_map<std::string, std::variant<int,std::string> >;
+
+    private:
+        std::string table;          //要查询的表名
+        std::vector<std::string> columns; // 列名 数组
+        std::vector<std::vector<std::string >> values;  //
+        MAP_type where; 
+        int limit;
+        int page;
+        int position;
+
     public:
         QueryConfig() = default;
         QueryConfig(std::nullptr_t Nul) {}
@@ -30,32 +40,7 @@ class QueryConfig {
             return *this;
         }
 
-        static QueryConfig getQueryConfig(std::string table , json request){
-            MAP_type transferredRequest;
-            for( auto& el : request.items()){
-                //keys.push_back(el.key());
-                auto & key = el.key();
-                auto & val = el.value();
-                std::cout << key << " --<";
-                std::cout << val<< std::endl;
-                if( val.is_string()){
-                    transferredRequest[key] = val.get<std::string>();
-                }
-                else if(val.is_number_integer()) {
-                    transferredRequest[key] = val.get<int>();
-                }
-            }
-            return QueryConfig(transferredRequest);
-        }
-
-    private:
-        std::string table;
-        std::vector<std::string> columns;
-        std::vector<std::vector<std::string >> values;
-        MAP_type where; // TODO key2 is not Object
-        int limit;
-        int page;
-        int position;
-
+        static QueryConfig getQueryConfig(std::string table , json request);
+        static std::string getWhereString(MAP_type where);
 
 };
